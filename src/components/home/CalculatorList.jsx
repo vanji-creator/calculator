@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 
 const calculators = [
   { id: "bmi", name: "BMI Calculator" },
@@ -33,12 +32,12 @@ export default function CalculatorList({ onSelect }) {
 
   const handleSelect = (id) => {
     setSelected(id);
-    onSelect(id);
+    onSelect(id); // Notify parent without navigation
   };
 
   return (
     <aside id="calculator-list" className="w-64 p-6">
-      <ul className="space-y-0-">
+      <ul className="space-y-4">
         {calculators.map((calc) => (
           <li
             key={calc.id}
@@ -49,7 +48,7 @@ export default function CalculatorList({ onSelect }) {
             }`}
             onClick={() => handleSelect(calc.id)}
           >
-            <Link href={`#${calc.id}`}>{calc.name}</Link>
+            <span>{calc.name}</span> {/* Replace Link with span */}
           </li>
         ))}
       </ul>
